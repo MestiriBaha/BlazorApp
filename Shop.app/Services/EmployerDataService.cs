@@ -1,4 +1,5 @@
 ﻿using BethanysPieShopHRM.Shared;
+using System.Text.Json;
 
 namespace Shop.app.Services
 {
@@ -21,14 +22,17 @@ namespace Shop.app.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Employee>> GetAllEmployees()
+        public async Task<IEnumerable<Employee>> GetAllEmployees()
         {
-            throw new NotImplementedException();
+            //It means that the Deserializer will convert the Stream Data into an IEnumerable of Employee ! 
+            return await JsonSerializer.DeserializeAsync<IEnumerable<Employee>>(await _HttpClient.GetStreamAsync($"api/Employee"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true  }); 
+            
         }
-
-        public Task<Employee> GetEmployeeDetails(int employeeId)
+        // PropertyNameCaseInsensitive , it should be false so the method can work properly 
+        public async Task<Employee> GetEmployeeDetails(int employeeId)
         {
-            throw new NotImplementedException();
+            return await JsonSerializer.DeserializeAsync<Employee>(await _HttpClient.GetStreamAsync($"api/Employee/{employeeId}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true  });
+
         }
 
         public Task UpdateEmployee(Employee employee)
