@@ -1,0 +1,33 @@
+﻿
+@page "/employeeoverview"
+<h1>EmployeeOverview</h1>
+
+@if (Employees==null )
+{
+    <p><em> Loading ... </em></p>
+}
+<MudTable Items="@Employees" Hover="true" Breakpoint="Breakpoint.Sm"  LoadingProgressColor="Color.Info">
+    <HeaderContent>
+        <MudTh>EmployeeId</MudTh>
+        <MudTh>FirstName</MudTh>
+        <MudTh>LastName</MudTh>
+        
+    </HeaderContent>
+    <RowTemplate>
+        @foreach (var Employee in Employees)
+        {
+         <MudTd DataLabel="EmployeeId">@Employee.EmployeeId</MudTd>
+        <MudTd DataLabel="FirstName">@Employee.FirstName</MudTd>
+        <MudTd DataLabel="LastName">@Employee.LastName</MudTd>
+        /*<MudTd DataLabel="Position" HideSmall="_hidePosition">@context.Position</MudTd>
+        <MudTd DataLabel="Molar mass">@context.Molar</MudTd>*/
+               <MudTd DataLabel="Click Me"><a href="@($"EmployeeDetail/{Employee.EmployeeId}")">Detail</a></MudTd>
+
+            
+        }
+
+       
+    </RowTemplate>
+</MudTable>
+
+
