@@ -7,5 +7,12 @@
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
+<div> 
+    <h2>Two way Data Binding  : @employee.FirstName</h2>
+    Employee First Name : 
+     <input @bind="@employee.FirstName"/>
+      Employee Last Name : 
+     <input @bind="@employee.LastName"/>
+</div>
 
 <SurveyPrompt Title="How is Blazor working for you?" />
